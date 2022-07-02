@@ -3,7 +3,15 @@ import ForgotPassword from "./ForgotPassword";
 import LogIn from "./LogIn";
 import ResetPassword from "./ResetPassword";
 
-const Auth = () => {
+import { connect } from "react-redux";
+
+import {
+  ForgotPasswordAction,
+  ResetPasswordAction,
+  SingInAction,
+} from "../Actions/AuthAction";
+
+const Auth = ({ singIn, forgotPassword, resetPassword }: any) => {
   return (
     <>
       <div className="container col-xl-10 col-xxl-8 px-4 py-5">
@@ -21,10 +29,10 @@ const Auth = () => {
           </div>
           <div className="col-md-10 mx-auto col-lg-5">
             <Routes>
-              <Route path="/" element={<LogIn />} />
-              <Route path="login" element={<LogIn />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/" element={<LogIn singIn={singIn} />} />
+              <Route path="login" element={<LogIn singIn={singIn} />} />
+              <Route path="/forgot-password" element={<ForgotPassword forgotPassword={forgotPassword}/>} />
+              <Route path="/reset-password" element={<ResetPassword resetPassword={resetPassword} />} />
             </Routes>
           </div>
         </div>
@@ -33,4 +41,22 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+const mapStateToProps = (state: any) => {
+  return { user: state };
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    singIn: (userState: any, props: any) => {
+      dispatch(SingInAction({ userState, props }));
+    },
+    forgotPassword: (userState: any, props: any) => {
+      dispatch(ForgotPasswordAction({ userState, props }));
+    },
+    resetPassword: (userState: any, props: any) => {
+      dispatch(ResetPasswordAction({ userState, props }));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+//export default Auth;

@@ -5,6 +5,10 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import axios from "axios";
+
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_API;
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

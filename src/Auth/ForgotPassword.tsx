@@ -1,4 +1,4 @@
-const ForgotPassword = () =>{
+const ForgotPassword = ({forgotPassword}:any) =>{
 
     return(<>
     <form

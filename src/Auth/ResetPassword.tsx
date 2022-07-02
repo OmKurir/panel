@@ -1,4 +1,4 @@
-const ResetPassword = () =>{
+const ResetPassword = ({resetPassword}:any) =>{
     return (<>
     <form
         className="p-4 p-md-5 border rounded-3 bg-light"
