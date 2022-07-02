@@ -1,0 +1,26 @@
+    .icon {
+        font-size: 30px;
+        padding: 0 15px;
+    }
+    
+    .bg-main-primary {
+        background: rgb(2, 0, 33);
+        background: linear-gradient(49deg, rgba(2, 0, 33, 1) 0%, rgba(0, 0, 134, 1) 42%, rgba(53, 116, 205, 1) 66%, rgba(0, 212, 255, 1) 100%);
+    }
+    
+    .bg-main-secondary {
+        background: rgb(6, 0, 94);
+        background: linear-gradient(330deg, rgba(6, 0, 94, 1) 0%, rgba(0, 0, 134, 1) 18%, rgba(53, 116, 205, 1) 75%, rgba(0, 212, 255, 1) 100%);
+    }
+    
+    .bg-main-dark {
+        background: rgb(0, 0, 0);
+        background: linear-gradient(166deg, rgba(0, 0, 0, 1) 17%, rgba(0, 0, 134, 1) 63%, rgba(32, 65, 112, 1) 80%, rgba(2, 0, 80, 1) 100%);
+        color: #FFF;
+    }
+    
+    .bg-main-light {
+        background: rgb(182, 201, 255);
+        background: linear-gradient(225deg, rgba(182, 201, 255, 1) 0%, rgba(255, 255, 255, 1) 69%, rgba(178, 244, 255, 1) 100%);
+        color: #000;
+    }
