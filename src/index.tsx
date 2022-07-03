@@ -1,20 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 import axios from "axios";
+import { ToastProvider } from "react-toast-notifications";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_API;
+const {REACT_APP_BASE_URL_API} = process.env
+axios.defaults.baseURL = `${REACT_APP_BASE_URL_API}/api/v2/`;
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ToastProvider autoDismissTimeout={5000} transitionDuration={500}>
+      <App />
+    </ToastProvider>
   </React.StrictMode>
 );
 

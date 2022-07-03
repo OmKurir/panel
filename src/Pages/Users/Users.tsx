@@ -2,12 +2,15 @@ import Sidebars from "../../Components/Main/SideBars";
 import PageTitleBar from "../../Components/PageHelper/PageTitleBar";
 import UserList from "./Components/UserList";
 
-const Users = () => {
+const Users = ({getUsers}:any) => {
+
   return (
     <>
       <div className="row text-left">
         <PageTitleBar />
-      </div>{/*
+      </div>
+      {
+      /*
       <div className="row">
         <nav className="bg-light nav nav-underline">
           <a className="nav-link" href="#">
@@ -37,7 +40,7 @@ const Users = () => {
         <div className="row">
         <Sidebars/>
         <div className="col-md-8 col-lg-8">
-          <UserList />
+          <UserList getUsers={getUsers} />
         </div>
         </div>
       </div>

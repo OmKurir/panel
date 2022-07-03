@@ -1,5 +1,5 @@
 
-const Settings = () => {
+const Settings = (props:any) => {
   return (
     <>
       Settings

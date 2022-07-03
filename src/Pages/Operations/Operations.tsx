@@ -1,5 +1,5 @@
 
-const Operations = () => {
+const Operations = (props:any) => {
   return (
     <>
       Operations

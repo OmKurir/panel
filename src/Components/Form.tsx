@@ -27,6 +27,9 @@ const Button = ({ loading, type, text, iconLeft, iconRight,className, onClick=on
   </Btn>
 );
 
+const IsLoading=({loading=false})=> 
+  <div className="container" style={{padding:"2em", textAlign: "center"}}><Spinner enabled={loading} size={100}  /></div>
+
 interface validationMessageType {
   valid?: boolean;
   message?: string;
@@ -51,4 +54,4 @@ const Spinner = ({ enabled=false }: { enabled: boolean }) => (
   />
 );
 
-export {Spinner, Button, ValidationMessage };
+export {Spinner,IsLoading, Button, ValidationMessage };

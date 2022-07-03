@@ -1,5 +1,5 @@
 
-const Orders = () => {
+const Orders = (props:any) => {
   return (
     <>
       Orders
