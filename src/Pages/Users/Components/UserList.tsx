@@ -86,7 +86,7 @@ const lines = ({line,lineClick}: any) => {
             <div className="col-md-4"><small>{line.createdAt}</small></div>
           </div>
         </td>
-        <td>@mdo</td>
+        <td></td>
       </tr>
     </>
   );
