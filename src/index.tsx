@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_API;
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_API+'/api/v2/';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
