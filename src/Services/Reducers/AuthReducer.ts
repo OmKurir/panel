@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthActionToasts, AuthActionTypes } from "../Actions/AuthAction";
+import { AuthActionTypes } from "../Actions/AuthAction";
 const STORAGE_KEY = "00xvtpkbnb2ah";
 const dafaultState = {
   isLogedIn: false,
@@ -33,7 +33,7 @@ const GetAuthState = () => {
         },
       };
     }
-    
+
     return dafaultState;
   } catch (error) {
     return dafaultState;
@@ -42,7 +42,7 @@ const GetAuthState = () => {
 const defaultToaster = (m: string, t: any) => alert(m);
 
 const AuthReducer = (state: any = GetAuthState(), action: any) => {
-  debugger;
+  ;
   const domLoading = (b: boolean) => b;
   const {
     data: payload,
@@ -52,7 +52,7 @@ const AuthReducer = (state: any = GetAuthState(), action: any) => {
   } = action.payload ?? {};
   const message = `app.messages.${action.type.toLowerCase()}`;
   let newState = state;
-  debugger
+  ;
   switch (action.type) {
     case AuthActionTypes.SINGIN_FAIL:
       addToast(message, { appearance: "info", autoDismiss: true });
@@ -92,20 +92,13 @@ const AuthReducer = (state: any = GetAuthState(), action: any) => {
 
       break;
 
-    case AuthActionTypes.SINGIN_SUCCESS:
-      addToast(message, { appearance: "success", autoDismiss: true });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-      newState = {
-        isLogedIn: true,
-        user: payload,
-      };
-
+    case AuthActionTypes.SINGOUT:
+      addToast(message, { appearance: "info", autoDismiss: true });
+      localStorage.removeItem(STORAGE_KEY);
       break;
-
-
-    case 'ERR_NETWORK':
+    case "ERR_NETWORK":
       addToast(message, { appearance: "error", autoDismiss: true });
-      
+
       break;
     default:
       // return dafaultState;
@@ -114,5 +107,5 @@ const AuthReducer = (state: any = GetAuthState(), action: any) => {
   setLoading(false);
   return newState;
 };
-export { GetAuthState , };
+export { GetAuthState };
 export default AuthReducer;

@@ -3,41 +3,66 @@ import ForgotPassword from "./ForgotPassword";
 import LogIn from "./LogIn";
 import ResetPassword from "./ResetPassword";
 
-import { connect } from "react-redux";
+import { connect, Provider } from "react-redux";
 
 import {
   ForgotPasswordAction,
   ResetPasswordAction,
   SingInAction,
-} from "../Actions/AuthAction";
+} from "../Services/Actions/AuthAction";
 
-const Auth = ({ singIn, forgotPassword, resetPassword }: any) => {
+const Auth = (props: any) => {
+  const { singIn, forgotPassword, resetPassword, navigate, user } = props;
+
+  if (user.AuthReducer.isLogedIn) {
+    window.location.href = "/";
+    return <></>;
+  }
   return (
-    <>
-      <div className="container col-xl-10 col-xxl-8 px-4 py-5">
-        <div className="row align-items-center g-lg-5 py-5">
-          <div className="col-lg-7 text-center text-lg-start">
-            <h1 className="display-4 fw-bold lh-1 mb-3">
-              Vertically centered hero sign-up form
-            </h1>
-            <p className="col-lg-10 fs-4">
-              Below is an example form built entirely with Bootstrap’s form
-              controls. Each required form group has a validation state that can
-              be triggered by attempting to submit the form without completing
-              it.
-            </p>
-          </div>
-          <div className="col-md-10 mx-auto col-lg-5">
-            <Routes>
-              <Route path="/" element={<LogIn singIn={singIn} />} />
-              <Route path="login" element={<LogIn singIn={singIn} />} />
-              <Route path="/forgot-password" element={<ForgotPassword forgotPassword={forgotPassword}/>} />
-              <Route path="/reset-password" element={<ResetPassword resetPassword={resetPassword} />} />
-            </Routes>
-          </div>
+    <div className="container col-xl-10 col-xxl-8 px-4 py-5">
+      <div className="row align-items-center g-lg-5 py-5">
+        <div className="col-lg-7 text-center text-lg-start">
+          <h1 className="display-4 fw-bold lh-1 mb-3">
+            Vertically centered hero sign-up form
+          </h1>
+          <p className="col-lg-10 fs-4">
+            Below is an example form built entirely with Bootstrap’s form
+            controls. Each required form group has a validation state that can
+            be triggered by attempting to submit the form without completing it.
+          </p>
+        </div>
+        <div className="col-md-10 mx-auto col-lg-5">
+          <Routes>
+            <Route
+              path="/"
+              element={<LogIn singIn={singIn} navigate={navigate} />}
+            />
+            <Route
+              path="login"
+              element={<LogIn singIn={singIn} navigate={navigate} />}
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <ForgotPassword
+                  forgotPassword={forgotPassword}
+                  navigate={navigate}
+                />
+              }
+            />
+            <Route
+              path="/reset-password"
+              element={
+                <ResetPassword
+                  resetPassword={resetPassword}
+                  navigate={navigate}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

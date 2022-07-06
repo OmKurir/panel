@@ -1,4 +1,4 @@
-const MarketPlace=()=>{
+const MarketPlace=(props:any)=>{
     return<>Market place</>
 }
 

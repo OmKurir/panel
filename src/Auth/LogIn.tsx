@@ -13,7 +13,7 @@ const LogIn = (props: any) => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [validated, setValidated] = useState(false);
-  //const { addToast } = useToasts();
+  const { addToast } = useToasts();
 
   const { email, password } = state;
   const { singIn } = props;
@@ -27,7 +27,7 @@ const LogIn = (props: any) => {
     if (form.checkValidity() === true) {
       setValidated(true);
       setLoading(true);
-      singIn(state, { ...props, /*addToast,*/ setLoading });
+      singIn(state, { ...props, addToast, setLoading });
     } else {
       setValidated(true);
     }

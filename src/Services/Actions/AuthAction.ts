@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { GetAuthState } from "./AuthReducer";
 
 const AuthActionTypes = {
   SINGIN_SUCCESS: "SINGIN_SUCCESS",
@@ -8,6 +7,7 @@ const AuthActionTypes = {
   FORGOT_PASSWORD_FAIL: "FORGOT_PASSWORD_FAIL",
   RESET_PASSWORD_SUCCESS: "RESET_PASSWORD_SUCCESS",
   RESET_PASSWORD_FAIL: "RESET_PASSWORD_FAIL",
+  SINGOUT:'SINGOUT_OUT',
   
 };
 const AuthActionToasts = {
@@ -16,11 +16,12 @@ const AuthActionToasts = {
   REGISTER_FAIL: { appearance: "error" },
   SINGIN_SUCCESS: { appearance: "success" },
   SINGIN_FAIL: { appearance: "error" },
-  SINGOUT_OUT: { appearance: "info" },
+  SINGOUT: { appearance: "info" },
 };
 
 const SingInAction = ({userState, props}: any) => {
   const { addToast } = props;
+  
   return async (dispatch: any) => {
     try {
       const { data } = await axios.post("/auth/sing_in", userState);
@@ -29,7 +30,8 @@ const SingInAction = ({userState, props}: any) => {
         type: AuthActionTypes.SINGIN_SUCCESS,
         payload: { ...{ data }, ...props },
       });
-      return props.navigate("/");
+      return window.location.href='/'
+      //return props.navigate("/");
     } catch (error: any) {
       if (error?.response?.status === 0) {
         addToast(`app.messages.${error?.code}`, {
@@ -71,11 +73,24 @@ const ForgotPasswordAction = ({userState, props}: any) => {
     }
   };
 };
+const SignOutAction = ({props}: any) => {
+  return async (dispatch: any) => {
+    try {
+      await dispatch({
+        type: AuthActionTypes.SINGOUT,
+        payload: { ...{}, ...props },
+      });
+      window.location.reload();
+      return props.navigate("/");
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+};
 const ResetPasswordAction = ({userState, props}: any) => {
   return async (dispatch: any) => {
     try {
       const { data } = await axios.post("/auth/sing_on", userState);
-      debugger;
       axios.defaults.headers.common["Authorization"] = data.accessToken;
       if (data?.errors?.length > 0) throw data.errors;
       dispatch({
@@ -97,6 +112,7 @@ export {
   SingInAction,
   ResetPasswordAction,
   ForgotPasswordAction,
+  SignOutAction,
   AuthActionTypes,
   AuthActionToasts,
 };

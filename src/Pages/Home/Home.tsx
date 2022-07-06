@@ -1,6 +1,6 @@
 import Dashboard from "./DashBoard";
 
-const Home = () => {
+const Home = (props:any) => {
   return (
     <>
       <Dashboard/>
