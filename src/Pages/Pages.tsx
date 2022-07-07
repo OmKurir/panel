@@ -3,17 +3,19 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "../Components/Main/Footer";
 import Header from "../Components/Main/Header";
 import { SignOutAction } from "../Services/Actions/AuthAction";
-import { getAllUsersByAction } from "../Services/Actions/UserActions";
+import { getAllUsersByAction, getUsersByAction } from "../Services/Actions/UserActions";
 
 import Home from "./Home/Home";
 import MarketPlace from "./MarketPlace/MarketPlace";
 import Operations from "./Operations/Operations";
 import Orders from "./Orders/Orders";
 import Settings from "./Settings/Settings";
+import UserDetails from "./Users/Components/UserDetails";
+import UserOrders from "./Users/Components/UserOrders";
 import Users from "./Users/Users";
 
 const Pages = (props: any) => {
-  const { user, signOut, getUsers } = props;
+  const { user, signOut, getUsers, getUser } = props;
   if (!user.AuthReducer.isLogedIn) {
     window.location.href = "/auth";
     return <></>;
@@ -34,6 +36,14 @@ const Pages = (props: any) => {
             <Route
               path="/users"
               element={<Users user={user.user} getUsers={getUsers} />}
+            />
+            <Route
+              path="/users/:id"
+              element={<UserDetails user={user.user} getUser={getUser} />}
+            />
+            <Route
+              path="/users/:id/orders"
+              element={<UserOrders user={user.user} getUser={getUser} />}
             />
             <Route
               path="/operations"
@@ -59,6 +69,9 @@ const mapDispatchToProps = (dispatch: any) => {
     },
     getUsers: (queryState: any, props: any) => {
       dispatch(getAllUsersByAction({ queryState, props }));
+    },
+    getUser: (queryState: any, props: any) => {
+      dispatch(getUsersByAction({ queryState, props }));
     },
   };
 };

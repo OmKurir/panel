@@ -9,33 +9,7 @@ const Users = ({getUsers}:any) => {
       <div className="row text-left">
         <PageTitleBar />
       </div>
-      {
-      /*
-      <div className="row">
-        <nav className="bg-light nav nav-underline">
-          <a className="nav-link" href="#">
-            Explore
-          </a>
-          <a className="nav-link" href="#">
-            Suggestions
-          </a>
-          <a className="nav-link" href="#">
-            Link
-          </a>
-          <a className="nav-link" href="#">
-            Link
-          </a>
-          <a className="nav-link" href="#">
-            Link
-          </a>
-          <a className="nav-link" href="#">
-            Link
-          </a>
-          <a className="nav-link" href="#">
-            Link
-          </a>
-        </nav>
-      </div> */}
+     
       <div className="container-fluid">
         <div className="row">
         <Sidebars/>

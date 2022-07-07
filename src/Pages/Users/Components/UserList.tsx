@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { IsLoading } from "../../../Components/Form";
 import Paginate from "../../../Components/PageHelper/Paginate";
 import { getUsersByAction } from "../../../Services/Actions/UserActions";
 
 const UserList = ({ getUsers }: any) => {
+  
+  const  navigate= useNavigate();
   const { addToast } = useToasts();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,8 +17,11 @@ const UserList = ({ getUsers }: any) => {
       getUsersByAction({ setUsers, addToast, setLoading });
     };
   }, [setUsers, addToast]);
+  
   const lineClick=()=>addToast('clicked')
-  const nums = [1, 2, 3, 4];
+  
+  const goToPage=(page:number)=>getUsersByAction({ setUsers, addToast, setLoading, page });
+  
   return (
     <>
       <div className="my-3 p-3 bg-white rounded shadow-sm text-left">
@@ -28,7 +33,7 @@ const UserList = ({ getUsers }: any) => {
         </h6>
         <table className="table  table-hover">
           <tbody>
-            {loading ? <IsLoading loading={loading} /> : users.map((line:any)=>lines({line,lineClick}))}
+            {loading ? <IsLoading loading={loading} /> : users?.data.map((line:any)=>Lines({line,navigate}))}
           </tbody>
         </table>
 
@@ -36,7 +41,7 @@ const UserList = ({ getUsers }: any) => {
           <div className="col-md-4">-</div>
           <div className="col-md-4">-</div>
           <div className="col-md-4 text-right">
-            <Paginate />
+            <Paginate data={users??{}} nextPage={goToPage} prevPage={goToPage}/>
           </div>
         </div>
       </div>
@@ -44,10 +49,12 @@ const UserList = ({ getUsers }: any) => {
   );
 };
 
-const lines = ({line,lineClick}: any) => {
+const Lines = ({line, navigate}: any) => {
   const typeIcon = ["apartment", "user"][line.type];
   const typeLabel = ["Business", "Personal", "Driver"][line.type];
   const typeColor = ["Business", "Personal", "Driver"][line.type];
+  
+  const lineClick = (id:string) => navigate('/users/'+id);//eg.history.push('/login');
 
   const IsActive = ({ isActive }: any) =>
     isActive ? (
@@ -67,7 +74,7 @@ const lines = ({line,lineClick}: any) => {
   );
   return (
     <>
-      <tr onClick={lineClick}>
+      <tr onClick={()=>lineClick(line.id)}>
         <th scope="row" style={{width:50}}>
           <div
             style={{ padding: "15px" }}

@@ -80,10 +80,10 @@ const getAllUsersByAction = ({ queryState, props }: any) => {
   };
 };
 
-const getUsersByAction = async ({ queryState,setUsers,addToast, setLoading }: any) => {
+const getUsersByAction = async ({ queryState,setUsers,addToast, setLoading, page=1 }: any) => {
   
   try {
-    const { data } = await axios.get("/users", queryState);
+    const { data } = await axios.get(`/users?page=${page}&pageSize=3`, queryState);
     setUsers(data);
   } catch (error: any) {
     addToast(error?.code, { appearance: "error", autoDismiss: true });
@@ -92,7 +92,19 @@ const getUsersByAction = async ({ queryState,setUsers,addToast, setLoading }: an
   return;
 };
 
+const getUserByAction = async ({ queryState,setUser,addToast, setLoading, id }: any) => {
+  
+  try {
+    const { data } = await axios.get(`/users/${id}`, queryState);
+    setUser(data);
+  } catch (error: any) {
+    addToast(error?.code, { appearance: "error", autoDismiss: true });
+  }
+  setLoading(false)
+  return;
+};
 export {
+  getUserByAction,
   getUsersByAction,
   getAllUsersByAction,
   createAction,

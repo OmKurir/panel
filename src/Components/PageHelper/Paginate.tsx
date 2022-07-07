@@ -1,33 +1,25 @@
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Paginate = () => {
+const Paginate = ({data, nextPage, prevPage}:any) => {
+  const {page, pageSize, pages,size}=data;
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation paginate" style={{float:'right'}} >
       <ul className="pagination">
         <li className="page-item">
-          <Link className="page-link" to={'#'}  aria-label="Previous">
-            <i className="lni lni-chevron-left"></i>.
-          </Link>
+          {page===1? <></>:
+          <Button className="page-link" onClick={()=>nextPage(page-1)}  aria-label="Previous">
+            <i className="lni lni-chevron-left"></i>
+          </Button>}
+        </li>
+        <li className="page-item" style={{color: 'rgb(50 121 208)',padding:' 0 5px'}}>          
+            {page??0}/ {pages??0}
         </li>
         <li className="page-item">
-          <Link className="page-link" to={'#'} >
-            1
-          </Link>
-        </li>
-        <li className="page-item">
-          <Link className="page-link" to={'#'} >
-            2
-          </Link>
-        </li>
-        <li className="page-item">
-          <Link className="page-link" to={'#'} >
-            3
-          </Link>
-        </li>
-        <li className="page-item">
-          <Link className="page-link" to={'#'} aria-label="Next">
-            <i className="lni lni-chevron-right"></i>.
-          </Link>
+        {page===pageSize?<></>:
+        <Button className="page-link" onClick={()=>nextPage(page+1)}  aria-label="Previous">
+            <i className="lni lni-chevron-right"></i>
+          </Button>}
         </li>
       </ul>
     </nav>

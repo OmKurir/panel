@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-const Sidebars = () => {
+const Sidebars = ({data=[]}:any) => {
+  debugger
   return (
     <>
       <div
@@ -18,67 +19,21 @@ const Sidebars = () => {
           <i className="lni lni-archive"></i>
         </Link>
         <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
+          {data.map(({to, title, icon, active}:any)=>
           <li className="nav-item">
             <Link
-              to={"#"}
-              className="nav-link active py-3 border-bottom"
+              to={to}
+              className={`nav-link ${active? 'active' :''} py-3 border-bottom`}
               aria-current="page"
-              title=""
+              title={title}
               data-bs-toggle="tooltip"
               data-bs-placement="right"
-              data-bs-original-title="Home"
+              data-bs-original-title={title}
             >
-              <i className="lni lni-archive"></i>
+              <i className={`lni lni-${icon}`}></i>
             </Link>
           </li>
-          <li>
-            <Link
-              to={"#"}
-              className="nav-link py-3 border-bottom"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Dashboard"
-            >
-              <i className="lni lni-archive"></i>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={"#"}
-              className="nav-link py-3 border-bottom"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Orders"
-            >
-              <i className="lni lni-archive"></i>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={"#"}
-              className="nav-link py-3 border-bottom"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Products"
-            >
-              <i className="lni lni-archive"></i>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={"#"}
-              className="nav-link py-3 border-bottom"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Customers"
-            >
-              ---
-            </Link>
-          </li>
+         )}
         </ul>
         <div className="dropdown border-top">
           <Link

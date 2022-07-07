@@ -28,7 +28,7 @@ const Button = ({ loading, type, text, iconLeft, iconRight,className, onClick=on
 );
 
 const IsLoading=({loading=false})=> 
-  <div className="container" style={{padding:"2em", textAlign: "center"}}><Spinner enabled={loading} size={100}  /></div>
+  <div className="container" style={{padding:"2em", textAlign: "center"}}><Spinner enabled={loading}  /></div>
 
 interface validationMessageType {
   valid?: boolean;
