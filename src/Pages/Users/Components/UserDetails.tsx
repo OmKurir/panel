@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
+import { IsLoading } from "../../../Components/Form";
 import Sidebars from "../../../Components/Main/SideBars";
 import PageTitleBar from "../../../Components/PageHelper/PageTitleBar";
 import { getUserByAction } from "../../../Services/Actions/UserActions";
@@ -51,7 +52,7 @@ const UserPage = ({ user, loading }:any) => {
   return (
     <>
       <div className="container-fluid py-4">
-        {loading? <IsLoading loading={loading}/> :<>
+        {loading ? <div className="card-body p-3" style={{backgroundColor:"#FFF"}}><IsLoading loading={loading}/></div> :<>
         <div className="row">
          {/* <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div className="card">

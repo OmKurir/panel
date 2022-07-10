@@ -62,7 +62,7 @@ const LogIn = (props: any) => {
         </div>
         <div className="form-floating mb-3">
           <Form.Control
-            type="email"
+            type="text"
             value={password}
             name="password"
             id="floatingPassword"

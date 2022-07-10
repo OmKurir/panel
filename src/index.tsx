@@ -9,8 +9,9 @@ import axios from "axios";
 import { ToastProvider } from "react-toast-notifications";
 
 
-const {REACT_APP_BASE_URL_API} = process.env
-axios.defaults.baseURL = `${REACT_APP_BASE_URL_API}/api/v2/`;
+const {REACT_APP_BASE_URL_API, REACT_APP_API_KEY} = process.env
+axios.defaults.baseURL = `https://4000-omkurir-server-ivu6g5b1kpz.ws-eu53.gitpod.io/api/v2/`;
+axios.defaults.headers.common["apikey"] = REACT_APP_API_KEY??'';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
